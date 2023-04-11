@@ -1,0 +1,22 @@
+Metadata-Version: 2.1
+Name: pyskl
+Version: 0.1.0
+Summary: A Toolbox for skeleton-based action recognition
+Home-page: https://github.com/kennymckormick/pyskl
+Author: Haodong Duan
+Author-email: dhd.efz@gmail.com
+Maintainer: Haodong Duan
+Maintainer-email: dhd.efz@gmail.com
+License: Apache License 2.0
+Description: # GMSKL
+Keywords: computer vision,video understanding
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Description-Content-Type: text/markdown
