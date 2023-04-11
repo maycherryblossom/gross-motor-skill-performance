@@ -1,3 +1,5 @@
+# This code is modified from the original code of pyskl.
+# Copyright (c) OpenMMLab. All rights reserved.
 model = dict(
     type='RecognizerGCN',
     backbone=dict(

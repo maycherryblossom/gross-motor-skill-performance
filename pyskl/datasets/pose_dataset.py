@@ -1,3 +1,4 @@
+# This code is modified from the original code of pyskl.
 # Copyright (c) OpenMMLab. All rights reserved.
 import os.path as osp
 
@@ -92,13 +93,10 @@ class PoseDataset(BaseDataset):
 
     def load_pkl_annotations(self):
         data = mmcv.load(self.ann_file)
-        # print(data)
         
         if self.split:
             split, data = data['split'], data['annotations']
             identifier = 'filename' if 'filename' in data[0] else 'frame_dir'
-            # print("ddddddd")
-            # print(self.split)
             split = set(split[self.split])
             data = [x for x in data if x[identifier] in split]
 

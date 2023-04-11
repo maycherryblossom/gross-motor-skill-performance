@@ -1,3 +1,5 @@
+# This code is modified from the original code of pyskl.
+# Copyright (c) OpenMMLab. All rights reserved.
 import numpy as np
 import torch
 
@@ -28,12 +30,10 @@ class RecognizerGCN(BaseRecognizer):
         """Defines the computation performed at every call when evaluation and
         testing."""
         assert self.with_cls_head or self.feat_ext
-        # print("forwardtest")
         bs, nc = keypoint.shape[:2]
         keypoint = keypoint.reshape((bs * nc, ) + keypoint.shape[2:])
 
         x = self.extract_feat(keypoint)
-        # print("just after extract feat in recognizergcn", x.shape)
         feat_ext = self.test_cfg.get('feat_ext', False)
         pool_opt = self.test_cfg.get('pool_opt', 'all')
         score_ext = self.test_cfg.get('score_ext', False)
@@ -64,21 +64,13 @@ class RecognizerGCN(BaseRecognizer):
                 x = x[None]
             return x.data.cpu().numpy().astype(np.float16)
         
-        ###위에거 다 안실행되고 여기가 실행됨.
-        # print("just before putting into self.clshead", x.shape)
         cls_score = self.cls_head(x)
-        # print("just after cls head cls_score shape:", cls_score.shape)
-        ## 여기서는 
-        # print("bs:", bs)
-        # print("nc:", nc)
         cls_score = cls_score.reshape(bs, nc, cls_score.shape[-1])
-        # print("after cls score reshape:", cls_score.shape)
         # harmless patch
         if 'average_clips' not in self.test_cfg:
             self.test_cfg['average_clips'] = 'prob'
 
         cls_score = self.average_clip(cls_score)
-        # print("after average clip cls score shape: ", cls_score.shape)
         if isinstance(cls_score, tuple) or isinstance(cls_score, list):
             cls_score = [x.data.cpu().numpy() for x in cls_score]
             return [[x[i] for x in cls_score] for i in range(bs)]
@@ -103,7 +95,6 @@ class RecognizerGCN(BaseRecognizer):
 
     def forward_gradcam(self, keypoint):
         assert self.with_cls_head
-        # print("d여기가 안나오네")
         return self._do_test(keypoint)
 
     def extract_feat(self, keypoint):

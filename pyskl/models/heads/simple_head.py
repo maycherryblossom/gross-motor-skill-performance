@@ -80,17 +80,11 @@ class SimpleHead(BaseHead):
             if self.mode == 'GCN':
                 pool = nn.AdaptiveAvgPool2d(1)
                 N, M, C, T, V = x.shape
-                # print("befor reshape in head:", x.shape)
                 x = x.reshape(N * M, C, T, V)
-                # print("before pool:", x.shape)
                 x = pool(x)
-                # print("after pool:", x.shape)
                 x = x.reshape(N, M, C)
                 x = x.mean(dim=1)
-                # print("after mean:", x.shape)
 
-        # print(x.shape[1])
-        # print(self.in_c)
         assert x.shape[1] == self.in_c
         if self.dropout is not None:
             x = self.dropout(x)
