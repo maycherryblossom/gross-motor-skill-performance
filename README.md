@@ -16,5 +16,22 @@ This code includes the modifications of [pyskl](https://github.com/kennymckormic
 
 - Chen, Y., Zhang, Z., Yuan, C., Li, B., Deng, Y., & Hu, W. (2021). Channel-wise Topology Refinement Graph Convolution for Skeleton-Based Action Recognition. In Proceedings of the IEEE/CVF International Conference on Computer Vision (pp. 13359-13368).
 
+
 # Installation
-To be updated.
+
+```shell
+git clone https://github.com/suriming/gross-motor-skill-performance.git
+pip install openmim
+mim install mmcv-full
+mim install mmdet
+mim install mmpose
+pip3 install -e .
+pip install -r requirements.txt
+```
+
+# Skeleton extraction
+
+
+To extract skeleton from your custom data, you should use specified conda environment. Refer to the issue 
+
+# 
