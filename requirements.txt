@@ -11,3 +11,4 @@ torch>=1.5
 tqdm
 future
 tensorboard
+imblearn

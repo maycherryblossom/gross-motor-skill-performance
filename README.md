@@ -20,6 +20,10 @@ This code includes the modifications of [pyskl](https://github.com/kennymckormic
 # Installation
 
 ```shell
+pip install torch==1.10.1+cu102 torchvision==0.11.2+cu102 torchaudio==0.10.1 -f https://download.pytorch.org/whl/cu102/torch_stable.html
+```
+
+```shell
 git clone https://github.com/suriming/gross-motor-skill-performance.git
 pip install openmim
 mim install mmcv-full
