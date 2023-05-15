@@ -1,10 +1,9 @@
-# Gross-motor-performance
+# Gross-motor-skill-performance
 
 This is a source code repository for 'Development of GCN-based deep learning model for early prediction of comprehensive gross motor performance assessment in toddler'.
 
 <!-- ![Alt Text](examples/readme_resource.gif) -->
 <img src="examples/readme_resource.gif" alt="Alt Text" width="200">
-
 
 # Notice
 
@@ -18,6 +17,7 @@ This code includes the modifications of [pyskl](https://github.com/kennymckormic
 
 
 # Installation
+
 
 ```shell
 pip install torch==1.10.1+cu102 torchvision==0.11.2+cu102 torchaudio==0.10.1 -f https://download.pytorch.org/whl/cu102/torch_stable.html
@@ -36,6 +36,51 @@ pip install -r requirements.txt
 # Skeleton extraction
 
 
-To extract skeleton from your custom data, you should use specified conda environment. Refer to the issue 
+This section is for whom want to start from extracting skeleton from his own data. If not, you may try downloading pre-processed open data through [pyskl data preparation guide](https://github.com/kennymckormick/pyskl).
 
-# 
+You should use specified conda environment which is different from the environment you set up above. For detailed information, please refer to the [pyskl installation guide](https://github.com/kennymckormick/pysk) and the [issue](https://github.com/kennymckormick/pyskl/issues/131).
+
+
+```shell
+# This conda environment is only for skeleton extraction! 
+conda env create -f pyskl.yaml
+conda activate pyskl
+```
+
+The skeleton extraction code will not only generate the human keypoints frames but the information about the videos you are processing. 
+There are two options related to the labels. 
+
+
+Option 1: You want to generate skeleton data with labels you already have for that data.
+
+First, genrate .txt file that list up the videos you want to process and thier labels. 
+
+The format is [path to tha video] [label]. 
+
+Example .txt file is shown below.
+
+```text
+/mnt/my_data/gms_act_1.mp4 1
+/mnt/my_data/gms_act_1.mp4 1
+```
+
+Then, run the command like below.
+
+```shell
+bash tools/dist_run.sh tools/data/custom_2d_skeleton.py 2 --video-list 01_data_preparation/video_list.txt --out 01_data_preparation/my_skeleton/processed_skeleon_data.pkl
+```
+
+# Training
+From this section, please deactivate the pyskl conda environment from skeleton extraciton part. 
+
+Running the below code will generate the logs, best weight, best prediction output and all the other files needed for the analysis or evaluation. The location would be work_dirs/ .
+```shell
+bash 02_run_gcn_model/train_by_folds.sh
+```
+
+```shell
+
+
+```
+
+# Gradcam 
