@@ -1,3 +1,4 @@
+
 bash ./tools/dist_train.sh configs/my_config/B/1/fold_1.py 2 --validate --seed 1234 --test-last --test-best
 bash ./tools/dist_train.sh configs/my_config/B/2/fold_1.py 2 --validate --seed 1234 --test-last --test-best
 bash ./tools/dist_train.sh configs/my_config/B/3/fold_1.py 2 --validate --seed 1234 --test-last --test-best
