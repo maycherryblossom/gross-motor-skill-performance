@@ -63,8 +63,6 @@ def build_inputs(model, raw_data):
     return data, original_data
 
 def main():
-    plt.rcParams['font.family'] = 'serif'
-    plt.rcParams['font.serif'] = ['Times New Roman'] + plt.rcParams['font.serif']
     device = 'cuda:0'
 
     target_true_label = 2
@@ -79,6 +77,9 @@ def main():
     keypoint_path = f'01_skeleton_extraction/my_skeleton/{age_idx}/{action_idx}/fold_16_test.pkl'
     target_layer_name = 'backbone.net.9'
 
+    plt.rcParams['font.family'] = 'serif'
+    plt.rcParams['font.serif'] = ['Times New Roman'] + plt.rcParams['font.serif']
+
     model = init_recognizer(cfg, checkpoint, device=device)
     if not (osp.exists(keypoint_path) or keypoint_path.startswith('http')):
         raise RuntimeError(f"'{keypoint_path} is missing")
@@ -88,7 +89,7 @@ def main():
 
     total_data_len = 0
     cnt_arr = np.zeros(17)
-
+    
     agg_data = data
     for i in range(len(agg_data)):
         video_name = data[i]['frame_dir']

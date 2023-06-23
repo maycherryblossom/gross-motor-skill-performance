@@ -2,6 +2,7 @@ README.md
 setup.py
 pyskl/__init__.py
 pyskl/smp.py
+pyskl/smp_for_extraction.py
 pyskl/version.py
 pyskl.egg-info/PKG-INFO
 pyskl.egg-info/SOURCES.txt

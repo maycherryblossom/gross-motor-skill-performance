@@ -8,9 +8,7 @@ Author-email: dhd.efz@gmail.com
 Maintainer: Haodong Duan
 Maintainer-email: dhd.efz@gmail.com
 License: Apache License 2.0
-Description: # GMSKL
 Keywords: computer vision,video understanding
-Platform: UNKNOWN
 Classifier: Development Status :: 4 - Beta
 Classifier: License :: OSI Approved :: Apache Software License
 Classifier: Operating System :: OS Independent
@@ -20,3 +18,90 @@ Classifier: Programming Language :: Python :: 3.7
 Classifier: Programming Language :: Python :: 3.8
 Classifier: Programming Language :: Python :: 3.9
 Description-Content-Type: text/markdown
+
+# Gross-motor-skill-performance
+
+This is a source code repository for 'Development of GCN-based deep learning model for early prediction of comprehensive gross motor performance assessment in toddler'.
+
+<!-- ![Alt Text](examples/readme_resource.gif) -->
+<img src="examples/readme_resource.gif" alt="Alt Text" width="200">
+
+# Notice
+
+This code includes the modifications of [pyskl](https://github.com/kennymckormick/pyskl) and [mmaction2](https://github.com/open-mmlab/mmaction2). The specific model used is [CTR-GCN](https://github.com/Uason-Chen/CTR-GCN). 
+
+- Duan, H., Wang, J., Chen, K., & Lin, D. (2022). Pyskl: Towards good practices for skeleton action recognition. In Proceedings of the 30th ACM International Conference on Multimedia (pp. 7351-7354).
+
+- MMAction2 Contributors. (2020). OpenMMLab's Next Generation Video Understanding Toolbox and Benchmark [Computer software]. https://github.com/open-mmlab/mmaction2
+
+- Chen, Y., Zhang, Z., Yuan, C., Li, B., Deng, Y., & Hu, W. (2021). Channel-wise Topology Refinement Graph Convolution for Skeleton-Based Action Recognition. In Proceedings of the IEEE/CVF International Conference on Computer Vision (pp. 13359-13368).
+
+
+# Installation
+
+
+```shell
+pip install torch==1.10.1+cu102 torchvision==0.11.2+cu102 torchaudio==0.10.1 -f https://download.pytorch.org/whl/cu102/torch_stable.html
+```
+
+```shell
+git clone https://github.com/suriming/gross-motor-skill-performance.git
+pip install openmim
+mim install mmcv-full
+mim install mmdet
+mim install mmpose
+pip3 install -e .
+pip install -r requirements.txt
+```
+
+# Skeleton extraction
+
+
+This section is for whom want to start from extracting skeleton from his own data. If not, you may try downloading pre-processed open data through [pyskl data preparation guide](https://github.com/kennymckormick/pyskl).
+
+You should use specified conda environment which is different from the environment you set up above. For detailed information, please refer to the [pyskl installation guide](https://github.com/kennymckormick/pysk) and the [issue](https://github.com/kennymckormick/pyskl/issues/131).
+
+
+```shell
+# This conda environment is only for skeleton extraction! 
+conda env create -f pyskl.yaml
+conda activate pyskl
+```
+
+The skeleton extraction code will not only generate the human keypoints frames but the information about the videos you are processing. 
+There are two options related to the labels. 
+
+
+Option 1: You want to generate skeleton data with labels you already have for that data.
+
+First, genrate .txt file that list up the videos you want to process and thier labels. 
+
+The format is [path to tha video] [label]. 
+
+Example .txt file is shown below.
+
+```text
+/mnt/my_data/gms_act_1.mp4 1
+/mnt/my_data/gms_act_1.mp4 1
+```
+
+Then, run the command like below.
+
+```shell
+bash tools/dist_run.sh tools/data/custom_2d_skeleton.py 2 --video-list 01_data_preparation/video_list.txt --out 01_data_preparation/my_skeleton/processed_skeleon_data.pkl
+```
+
+# Training
+From this section, please deactivate the pyskl conda environment from skeleton extraciton part. 
+
+Running the below code will generate the logs, best weight, best prediction output and all the other files needed for the analysis or evaluation. The location would be work_dirs/ .
+```shell
+bash 02_run_gcn_model/train_by_folds.sh
+```
+
+```shell
+
+
+```
+
+# Gradcam 
