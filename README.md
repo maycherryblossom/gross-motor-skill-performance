@@ -25,6 +25,7 @@ pip install torch==1.10.1+cu102 torchvision==0.11.2+cu102 torchaudio==0.10.1 -f 
 
 ```shell
 git clone https://github.com/suriming/gross-motor-skill-performance.git
+cd gross-motor-skill-performance
 pip install openmim
 mim install mmcv-full
 mim install mmdet
