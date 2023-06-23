@@ -7,9 +7,9 @@ model = dict(
     cls_head=dict(type='GCNHead', num_classes=3, in_channels=256))
 
 dataset_type = 'PoseDataset'
-ann_file = './01_skeleton_data_extraction/my_skeleton/B/3/fold_20_train.pkl'
-ann_file_val = './01_skeleton_data_extraction/my_skeleton/B/3/fold_20_val.pkl'
-ann_file_test = './01_skeleton_data_extraction/my_skeleton/B/3/fold_20_test.pkl'
+ann_file = '/mnt/2021_NIA_data/processed/B/3/fold_20_train.pkl'
+ann_file_val = '/mnt/2021_NIA_data/processed/B/3/fold_20_val.pkl'
+ann_file_test = '/mnt/2021_NIA_data/processed/B/3/fold_20_test.pkl'
 
 left_kp = [1, 3, 5, 7, 9, 11, 13, 15]
 right_kp = [2, 4, 6, 8, 10, 12, 14, 16]
