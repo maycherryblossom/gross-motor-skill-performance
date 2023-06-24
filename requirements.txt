@@ -12,3 +12,4 @@ tqdm
 future
 tensorboard
 imblearn
+torhchsummary

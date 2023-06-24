@@ -4,9 +4,9 @@ model = dict(
         type='CTRGCN_F', graph_cfg=dict(layout='coco', mode='spatial')),
     cls_head=dict(type='GCNHead', num_classes=3, in_channels=256))
 dataset_type = 'PoseDataset'
-ann_file = '/home/pilab/ActionRecognition/mmpickles/fast_rcnn_pid_chain/B/2/fold_1_train.pkl'
-ann_file_val = '/home/pilab/ActionRecognition/mmpickles/fast_rcnn_pid_chain/B/2/fold_1_val.pkl'
-ann_file_test = '/home/pilab/ActionRecognition/mmpickles/fast_rcnn_pid_chain/B/2/fold_1_test.pkl'
+ann_file = '/mnt/2021_NIA_data/processed/B/2/fold_1_train.pkl'
+ann_file_val = '/mnt/2021_NIA_data/processed/B/2/fold_1_val.pkl'
+ann_file_test = '/mnt/2021_NIA_data/processed/B/2/fold_1_test.pkl'
 left_kp = [1, 3, 5, 7, 9, 11, 13, 15]
 right_kp = [2, 4, 6, 8, 10, 12, 14, 16]
 train_pipeline = [
@@ -51,8 +51,7 @@ data = dict(
         times=5,
         dataset=dict(
             type='PoseDataset',
-            ann_file=
-            '/home/pilab/ActionRecognition/mmpickles/fast_rcnn_pid_chain/B/2/fold_1_train.pkl',
+            ann_file='/mnt/2021_NIA_data/processed/B/2/fold_1_train.pkl',
             pipeline=[
                 dict(type='PreNormalize2D'),
                 dict(
@@ -71,8 +70,7 @@ data = dict(
             split=None)),
     val=dict(
         type='PoseDataset',
-        ann_file=
-        '/home/pilab/ActionRecognition/mmpickles/fast_rcnn_pid_chain/B/2/fold_1_val.pkl',
+        ann_file='/mnt/2021_NIA_data/processed/B/2/fold_1_val.pkl',
         pipeline=[
             dict(type='PreNormalize2D'),
             dict(type='GenSkeFeat', dataset='coco', feats=['j']),
@@ -87,8 +85,7 @@ data = dict(
         split=None),
     test=dict(
         type='PoseDataset',
-        ann_file=
-        '/home/pilab/ActionRecognition/mmpickles/fast_rcnn_pid_chain/B/2/fold_1_test.pkl',
+        ann_file='/mnt/2021_NIA_data/processed/B/2/fold_1_test.pkl',
         pipeline=[
             dict(type='PreNormalize2D'),
             dict(type='GenSkeFeat', dataset='coco', feats=['j']),
@@ -116,7 +113,7 @@ log_config = dict(
     hooks=[dict(type='TextLoggerHook'),
            dict(type='TensorboardLoggerHook')])
 log_level = 'INFO'
-work_dir = './work_dirs/fast_rcnn_pid_chain/try4/B/2/fold_1'
+work_dir = './work_dirs/my_skeleton/B/2/fold_1'
 find_unused_parameters = True
 dist_params = dict(backend='nccl')
-gpu_ids = range(0, 2)
+gpu_ids = range(0, 1)

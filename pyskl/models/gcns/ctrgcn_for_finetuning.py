@@ -102,7 +102,7 @@ class CTRGCN_F(nn.Module):
                  num_stages=10,
                  inflate_stages=[5, 8],
                  down_stages=[5, 8],
-                 pretrained='/home/pilab/ActionRecognition/gmskl/zoo/ctrgcn_nturgb120_hrnet_j.pth',
+                 pretrained='./zoo/ctrgcn_nturgb120_hrnet_j.pth',
                  num_person=2,
                  **kwargs):
         super(CTRGCN_F, self).__init__()
