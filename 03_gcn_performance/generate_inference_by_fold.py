@@ -243,7 +243,7 @@ def label_and_save(age, shortMerge_test, shortMerge_train, shortMerge_val, i):
     # ev = ev.dropna(axis=0)
     # ev = ev[ev.아동영상코드.str[0] == 'B']s
 
-    newlabel = pd.read_csv("02_labels/development_status_label.csv")
+    newlabel = pd.read_csv("01_data_preparation/development_status_label.csv")
     newlabel = newlabel[['ID', 'label_pid']]
     newlabel = newlabel.drop_duplicates()
 
@@ -321,7 +321,7 @@ def main ():
         agg_test_act4, agg_train_act4, agg_val_act4 = make_dataframe(4, results_test_act4, results_train_act4, results_val_act4, data_orig_test_act4, data_orig_train_act4, data_orig_val_act4)
 
         
-        fold_path = f"04_performance_and_gradcam_gcn/{folder_specific}/{age}/fold_{i}"
+        fold_path = f"03_gcn_performance/{folder_specific}/{age}/fold_{i}"
 
         if not os.path.exists(fold_path):
             os.makedirs(fold_path)
