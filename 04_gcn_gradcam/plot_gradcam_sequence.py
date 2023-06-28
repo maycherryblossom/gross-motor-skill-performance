@@ -74,7 +74,7 @@ def main():
     cfg_path = f"work_dirs/my_skeleton/{age_idx}/{action_idx}/fold_16/fold_16.py"
     cfg = Config.fromfile(cfg_path)
     checkpoint = f'work_dirs/my_skeleton/{age_idx}/{action_idx}/fold_16/latest.pth'
-    keypoint_path = f'01_skeleton_extraction/my_skeleton/{age_idx}/{action_idx}/fold_16_test.pkl'
+    keypoint_path = f'/mnt/2021_NIA_data/processed/{age_idx}/{action_idx}/fold_16_test.pkl'
     target_layer_name = 'backbone.net.9'
 
     plt.rcParams['font.family'] = 'serif'
@@ -109,9 +109,9 @@ def main():
             continue
         
         # make each plot of the frame
-        os.makedirs(f"05_gcn_gradcam/gradcam_sequence/{tp_label_idx}/{action_idx}/{video_name}", exist_ok=True)
+        os.makedirs(f"04_gcn_gradcam/gradcam_sequence/{tp_label_idx}/{action_idx}/{video_name}", exist_ok=True)
         for i in range(len(raw_frame)):
-            plt.imsave(f"05_gcn_gradcam/gradcam_sequence/{tp_label_idx}/{action_idx}/{video_name}/{i}.svg", raw_frame[i], dpi=300,format='svg')
+            plt.imsave(f"04_gcn_gradcam/gradcam_sequence/{tp_label_idx}/{action_idx}/{video_name}/{i}.svg", raw_frame[i], dpi=300,format='svg')
 
         counts = pd.DataFrame(columns=['head', 'right arm', 'left arm', 'right leg', 'left leg', 'label', 'action'])
         localization_results = localization_results[:, 0, :, :].squeeze().cpu().numpy()
@@ -146,11 +146,11 @@ def main():
         ax.yaxis.set_minor_locator(ticker.MultipleLocator(0.5))
         ax.tick_params(axis='y', which='major', pad=5)
         ax.grid(which = 'minor', color = 'w')
-        os.makedirs(f"05_gcn_gradcam/gradcam_sequence/{tp_label_idx}/{action_idx}", exist_ok=True)
-        fig.savefig(f"05_gcn_gradcam/gradcam_sequence/{tp_label_idx}/{action_idx}/{video_name}_heatmap.svg", dpi=300, transparent=True, format='svg',bbox_inches='tight', pad_inches=0)
+        os.makedirs(f"04_gcn_gradcam/gradcam_sequence/{tp_label_idx}/{action_idx}", exist_ok=True)
+        fig.savefig(f"04_gcn_gradcam/gradcam_sequence/{tp_label_idx}/{action_idx}/{video_name}_heatmap.svg", dpi=300, transparent=True, format='svg',bbox_inches='tight', pad_inches=0)
     
     cnt_pd = pd.DataFrame(cnt_arr)
-    cnt_pd.to_csv(f"05_gcn_gradcam/gradcam_sequence/{tp_label_idx}/cnt_{action_idx}.csv", index=False)
+    cnt_pd.to_csv(f"04_gcn_gradcam/gradcam_sequence/{tp_label_idx}/cnt_{action_idx}.csv", index=False)
 
 if __name__ == '__main__':
     main()
