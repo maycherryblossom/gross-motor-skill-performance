@@ -20,7 +20,7 @@ def main():
 
     age_idx = 'B'
     method = "my_skeleton"
-    save_path = f'06_xgboost_performance_shap/generated/{method}/{age_idx}/'
+    save_path = f'05_xgboost_performance_shap/generated/{method}/{age_idx}/'
     shap_each_path = save_path + 'shap/'
     if not os.path.exists(shap_each_path):
         os.makedirs(shap_each_path)
@@ -45,9 +45,9 @@ def main():
         # if i == 3:
         #     break
 
-        train = pd.read_csv(f'04_gcn_performance/generated/{method}/{age_idx}/fold_{i}/short_train_labeled.csv')
-        val = pd.read_csv(f'04_gcn_performance/generated/{method}/{age_idx}/fold_{i}/short_val_labeled.csv')
-        test = pd.read_csv(f'04_gcn_performance/generated/{method}/{age_idx}/fold_{i}/short_test_labeled.csv')
+        train = pd.read_csv(f'03_gcn_performance/{method}/{age_idx}/fold_{i}/short_train_labeled.csv')
+        val = pd.read_csv(f'03_gcn_performance/{method}/{age_idx}/fold_{i}/short_val_labeled.csv')
+        test = pd.read_csv(f'03_gcn_performance/{method}/{age_idx}/fold_{i}/short_test_labeled.csv')
 
         y_train = train["label_pid"]
         X_train = train.drop(columns=["label_pid", 'pid'])
@@ -173,7 +173,7 @@ def main():
     axs[0].set_ylabel('Sensitivity(%)', fontsize=10)
     axs[0].legend(loc="lower right", fontsize=10)
 
-    data = pd.read_csv('06_xgboost_performance_shap/generated/my_skeleton/B/shap_beeswarm_total_avg_data.csv')
+    data = pd.read_csv('05_xgboost_performance_shap/generated/my_skeleton/B/shap_beeswarm_total_avg_data.csv')
     columns = np.array(data['Unnamed: 0'])
     new_data = pd.DataFrame(np.array(data['0']).reshape(1, 12), columns=columns)
     new_data['act_1'] = (new_data['1_1'] + new_data['1_2'] + new_data['1_3']) 
